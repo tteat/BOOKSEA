@@ -1,0 +1,7 @@
+<p>你好 <%= @resource.email %>!</p>
+
+<p>您的帐户已被锁定为过多次登录尝试失败。</p>
+
+<p>点击此处解锁您的账号：</p>
+
+<p><%= link_to '解锁我的账号', unlock_url(@resource, unlock_token: @token) %></p>
