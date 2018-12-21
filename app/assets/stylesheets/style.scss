@@ -1,0 +1,239 @@
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  padding-top: 70px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+}
+
+.type-devise {
+  height: 100%;
+
+  .height-100 {
+    height: 100%;
+
+    .devise-wrapper {
+      overflow: scroll;
+    }
+
+    .devise-content {
+      padding: 30px;
+    }
+
+    .devise-background {
+      background-size: cover;
+      background-position: center;
+
+      &.devise-header {
+        height: 100px;
+      }
+
+      @for $i from 1 through 2 {
+        &.devise-background-#{$i} {
+          background-image: url(image_path('side/#{$i}.jpg'));
+        }
+      }
+    }
+  }
+}
+
+.link-clean, .link-clean:hover {
+  text-decoration: none;
+  color: black;
+}
+
+.alerts {
+  &.alerts-fixed {
+    position: fixed;
+    z-index: 1000;
+    bottom: 20px;
+    right: 40px;
+    max-width: 600px;
+    padding-left: 30px;
+
+    .alert .close {
+      position: relative;
+      padding: 0 0 0 10px;
+    }
+  }
+}
+
+.nav-tabs-center {
+  justify-content: center;
+}
+
+.header {
+  background-color: #98AAA5;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  color: white;
+  height: 200px;
+  background-position: center;
+  background-image: url(image_path('header/0.jpg'));
+
+  .link-clean, .link-clean:hover {
+    color: white;
+    text-decoration: underline;
+  }
+
+  @for $i from 1 through 15 {
+    &.header-#{$i} {
+      background-image: url(image_path('header/#{$i}.jpg'));
+    }
+  }
+
+  &.header-lg {
+    height: 400px;
+  }
+}
+
+.tag-card {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  color: white;
+  background-size: cover;
+  background-position: center;
+  background-color: #CCC;
+  height: 350px;
+
+  &.tag-card-sm {
+    height: 200px;
+  }
+
+  .tag-gradient {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: -webkit-gradient(linear, left 50%, left bottom, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.6)));
+  }
+
+  .tag-content {
+    position: relative;
+  }
+}
+
+.img-profile-container {
+  position: relative;
+
+  .img-profile-header {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translate(-50%, -50%);
+
+    .img-profile-img {
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+}
+
+.img-profile-content {
+  padding-top: 125px;
+}
+
+.field_with_errors label {
+  color: #E74C3C;
+}
+
+input,
+textarea {
+  outline: none;
+  border: none;
+  display: block;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  font-family: "PT Sans", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+  font-size: 1rem;
+  color: #555f77;
+}
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  color: #ced2db;
+}
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+  color: #ced2db;
+}
+input:-moz-placeholder,
+textarea:-moz-placeholder {
+  color: #ced2db;
+}
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  color: #ced2db;
+}
+p {
+  line-height: 1.3125rem;
+}
+
+.comments {
+  max-width: 60.75rem;
+
+}
+.comment-wrap {
+  margin: 1.25rem auto;
+  display: table;
+  width: 70%;
+  min-height: 5.3125rem;
+}
+.photo {
+  padding-top: 0.625rem;
+  display: table-cell;
+  width: 3.5rem;
+}
+.photo .avatar {
+  height: 2.25rem;
+  width: 2.25rem;
+  border-radius: 50%;
+  background-size: contain;
+}
+.comment-block {
+  padding: 1rem;
+  background-color: #fff;
+  //display: table-cell;
+  vertical-align: top;
+  border-radius: 0.1875rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+}
+.comment-block textarea {
+  width: 100%;
+  max-width: 100%;
+}
+.comment-text {
+  margin-bottom: 1.25rem;
+  text-align: left;
+
+}
+.bottom-comment {
+  color: #acb4c2;
+  font-size: 0.875rem;
+  height: 30px;
+}
+.comment-date {
+  float: left;
+}
+.comment-actions {
+  float: right;
+}
+.comment-actions li {
+  display: inline;
+}
+.comment-actions li.complain {
+  padding-right: 0.625rem;
+  border-right: 1px solid #e1e5eb;
+}
+.comment-actions li.reply {
+  padding-left: 0.625rem;
+}
