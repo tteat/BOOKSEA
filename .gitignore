@@ -7,7 +7,7 @@
 
 # RAILS
 /.idea
-/temp
+/tmp
 /log
 /db/development.sqlite3
   *.rbc
