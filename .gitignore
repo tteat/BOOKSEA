@@ -6,12 +6,13 @@
 
 
 # RAILS
-
+/.idea
+/temp
+/log
+/db/development.sqlite3
   *.rbc
  capybara-*.html
  .rspec
- /log
- /tmp
  /db/*.sqlite3
  /db/*.sqlite3-journal
  /public/system
