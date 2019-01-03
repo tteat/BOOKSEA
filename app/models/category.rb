@@ -1,4 +1,4 @@
-class City < ApplicationRecord
+class Category < ApplicationRecord
   has_many :friends
 
   # VALIDATION

@@ -1,5 +1,5 @@
 class Friend < ApplicationRecord
-  belongs_to :city
+  belongs_to :category
   belongs_to :user
   has_many :exchanges1, class_name: 'Exchange', foreign_key: 'friend_initier_id'
   has_many :exchanges2, class_name: 'Exchange', foreign_key: 'friend_receiver_id'
@@ -20,7 +20,7 @@ class Friend < ApplicationRecord
 
   scope :active, -> { where disabled: false }
   scope :latest, -> { order updated_at: :desc }
-  scope :city, ->(city) { where city: city }
+  scope :category, ->(category) { where category: category }
   scope :of_user, ->(user) { where user: user }
   scope :with_tags, (lambda do |tag_ids, sort = nil|
     # require all tags to be present
@@ -67,7 +67,7 @@ class Friend < ApplicationRecord
   validates :first_name, length: { in: 2..50 }
   validates :birthday, presence: true
   validates :description, length: { in: 2..500 }
-  validates :city_id, presence: true
+  validates :category_id, presence: true
   validates :user_id, presence: true
 
   validate :disable_while_exchanged

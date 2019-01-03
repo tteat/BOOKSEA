@@ -12,10 +12,10 @@
   <h3 class="mt-5 mb-3">书籍分类</h3>
 
   <div class="row">
-    <% @tags_by_city.each do |tag| %>
+    <% @tags_by_category.each do |tag| %>
       <div class="col-md-3">
         <%= link_to search_get_path(
-          city_name: tag.city_name, city: tag.city_id,
+          category_name: tag.category_name, category: tag.category_id,
           tag_name: tag.label_male, tag: tag.id
         ), class: 'link-clean' do %>
           <div class="tag-card mb-3" style="background-image: url('<%= asset_path "tags/#{tag.label_male}.jpg" %>')">
@@ -23,7 +23,7 @@
             <div class="tag-content p-3">
 
               <h3 class="m-0 tag-text">#<%= tag.label_male.downcase %></h3>
-              <p class="m-0 tag-text"><%= tag.count %> 个书籍有“ <%= tag.city_name %>”这个标签</p>
+              <p class="m-0 tag-text"><%= tag.count %> 个书籍有“ <%= tag.category_name %>”这个标签</p>
 
             </div>
           </div>

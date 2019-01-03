@@ -38,8 +38,8 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <%= form.label :city_id, "类别", class: "font-weight-bold" %>
-                <%= form.select :city_id, options_for_select(City.all.map { |c| [c.name, c.id] }), {}, class: "form-control" %>
+                <%= form.label :category_id, "类别", class: "font-weight-bold" %>
+                <%= form.select :category_id, options_for_select(Category.all.map { |c| [c.name, c.id] }), {}, class: "form-control" %>
               </div>
             </div>
             <div class="col-md-6">

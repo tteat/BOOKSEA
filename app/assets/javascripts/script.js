@@ -1,5 +1,5 @@
 $(document).on('turbolinks:load', function () {
-  var items = $('.search-city, .search-tag');
+  var items = $('.search-category, .search-tag');
   var counter = 0;
   var elementSaver;
   var normalize = function (text) {

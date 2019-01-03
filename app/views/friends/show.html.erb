@@ -17,9 +17,9 @@
 
   <p class="mb-1">
     <em>
-<!--      <%#= age @friend.birthday %> 岁,-->
+
       <%= @friend.is_male ? '外文' : '中文' %>,
-      <%= @friend.city.name %>
+      <%= @friend.category.name %>
     </em>
   </p>
 

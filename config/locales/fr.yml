@@ -2,7 +2,7 @@
 fr:
   activerecord:
     models:
-      city: city
+      category: category
       exchange: exchange
       friend: Ami
       tag_relation: Tag

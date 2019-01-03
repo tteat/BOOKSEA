@@ -5,7 +5,7 @@ class CreateFriends < ActiveRecord::Migration[5.1]
       t.date :birthday
       t.boolean :is_male
       t.string :description
-      t.references :city, foreign_key: true
+      t.references :category, foreign_key: true
       t.references :user, foreign_key: true
 
       t.timestamps

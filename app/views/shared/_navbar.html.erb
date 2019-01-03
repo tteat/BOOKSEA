@@ -76,8 +76,8 @@
             <hr>
 
             <div class="form-group">
-              <%= collection_radio_buttons(nil, :city, City.all, :id, :name, {}, { required: true }) do |b| %>
-                <label class="custom-control custom-radio search-city">
+              <%= collection_radio_buttons(nil, :category, Category.all, :id, :name, {}, { required: true }) do |b| %>
+                <label class="custom-control custom-radio search-category">
                   <%= b.radio_button(class: 'custom-control-input') %>
                   <span class="custom-control-indicator"></span>
                   <span class="custom-control-description">

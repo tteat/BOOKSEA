@@ -5,7 +5,7 @@ one:
   birthday: 2017-12-08
   is_male: false
   description: MyString
-  city: one
+  category: one
   user: one
 
 two:
@@ -13,5 +13,5 @@ two:
   birthday: 2017-12-08
   is_male: false
   description: MyString
-  city: two
+  category: two
   user: two

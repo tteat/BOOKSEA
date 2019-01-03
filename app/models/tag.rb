@@ -22,40 +22,40 @@ class Tag < ApplicationRecord
     friends_grouped.sort_by { |_, v| v }.tap { |o| o.reverse! unless asc }
   end
 
-  def self.best_tags_by_city
+  def self.best_tags_by_category
     # NOTE 1: can't scope this method as it has some logic code associated, and is highly specific
     # NOTE 2: here we are quering, then filtering results by ourselves...
-    tags_by_city = Tag.select('tags.*, '\
-                              'cities.id as city_id, '\
-                              'cities.name as city_name, '\
+    tags_by_category = Tag.select('tags.*, '\
+                              'categories.id as category_id, '\
+                              'categories.name as category_name, '\
                               'COUNT(DISTINCT friends.id) as count')
                       .joins(:tag_relations)
                       .joins(:friends)
-                      .joins('INNER JOIN cities ON cities.id = friends.city_id')
+                      .joins('INNER JOIN categories ON categories.id = friends.category_id')
                       .where('friends.disabled' => false)
-                      .group('cities.id, tags.id')
+                      .group('categories.id, tags.id')
     hash = Hash.new(0)
-    tags_by_city.each do |tag|
-      hash[tag.city_id] = [tag.count, tag] if tag.count > hash[tag.city_id][0]
+    tags_by_category.each do |tag|
+      hash[tag.category_id] = [tag.count, tag] if tag.count > hash[tag.category_id][0]
     end
     hash.values.sort_by { |entry| entry[0] }.reverse.map { |entry| entry[1] }
 
     # ... as the following query works in SQLite, but not in PostgreSQL
-    # Tag.select('id, label_male, city_name, city_id, MAX(friends_count) as count')
+    # Tag.select('id, label_male, category_name, category_id, MAX(friends_count) as count')
     #                    .from(
     #                      Tag.select(
     #                        'tags.*, '\
-    #                        'cities.id as city_id, '\
-    #                        'cities.name as city_name, '\
+    #                        'categories.id as category_id, '\
+    #                        'categories.name as category_name, '\
     #                        'COUNT(DISTINCT friends.id) as friends_count'
     #                      )
     #                      .joins(:tag_relations)
     #                      .joins(:friends)
-    #                      .joins('INNER JOIN cities ON cities.id = friends.city_id')
+    #                      .joins('INNER JOIN categories ON categories.id = friends.category_id')
     #                      .where('friends.disabled' => false)
-    #                      .group('cities.id, tags.id')
+    #                      .group('categories.id, tags.id')
     #                   )
-    #                   .group('city_id')
+    #                   .group('category_id')
     #                   .order('count DESC')
   end
 

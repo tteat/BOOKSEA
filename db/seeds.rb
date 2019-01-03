@@ -42,13 +42,13 @@ users_count.times do
                         phone: "06#{format('%08d', rand(10**8))}")
 end
 
-# Cities
-puts 'Creating 4 cities...'
-cities = []
-cities << City.create!(name: '科技', latitude: 48.86471, longitude: 2.34901)
-cities << City.create!(name: '文学', latitude: 45.74846, longitude: 4.84671)
-cities << City.create!(name: '生活', latitude: 43.60426, longitude: 1.44367)
-cities << City.create!(name: '教材', latitude: 44.83615, longitude: -0.58081)
+# Categories
+puts 'Creating 4 categories...'
+categories = []
+categories << Category.create!(name: '科技')
+categories << Category.create!(name: '文学')
+categories << Category.create!(name: '生活')
+categories << Category.create!(name: '教材')
 
 # Tags
 puts 'Creating 15 tags...'
@@ -87,7 +87,7 @@ friends_count.times do
     birthday: date,
     is_male: male,
     description: format(descriptions.sample, first_name),
-    city: cities.sample,
+    category: categories.sample,
     user: users.sample,
     tag_relations_attributes: (tags.sample(rand(2..4)).map { |tag| { tag_id: tag.id } })
   )

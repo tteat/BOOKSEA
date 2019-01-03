@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :friends, except: %i[destroy]
 
-  get 'search/(:city_name).(:city)/(:tag_name).(:tag)' => 'pages#search', as: 'search_get'
+  get 'search/(:category_name).(:category)/(:tag_name).(:tag)' => 'pages#search', as: 'search_get'
   get 'search' => redirect('/')
   post 'search' => 'pages#search', as: 'search_post'
 
