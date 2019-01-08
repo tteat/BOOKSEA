@@ -1,27 +1,27 @@
 class Exchange < ApplicationRecord
   include ExchangesHelper
 
-  belongs_to :friend_initier, class_name: 'Friend', foreign_key: 'friend_initier_id'
-  belongs_to :friend_receiver, class_name: 'Friend', foreign_key: 'friend_receiver_id'
+  belongs_to :book_initier, class_name: 'Book', foreign_key: 'book_initier_id'
+  belongs_to :book_receiver, class_name: 'Book', foreign_key: 'book_receiver_id'
   has_many :tag_relations, inverse_of: :exchange
 
   scope :latest, -> { order updated_at: :desc }
   scope :active, ->(active = true) { where is_active: active }
-  scope :of_friend, (lambda do |friend|
-    where(friend_initier_id: friend)
-      .or(Exchange.where(friend_receiver_id: friend))
+  scope :of_book, (lambda do |book|
+    where(book_initier_id: book)
+      .or(Exchange.where(book_receiver_id: book))
   end)
 
-  def friends
-    [friend_initier, friend_receiver]
+  def books
+    [book_initier, book_receiver]
   end
 
   def user_rated?(user)
-    friend_rated? distinct_friends(self, user).second
+    book_rated? distinct_books(self, user).second
   end
 
-  def friend_rated?(friend)
-    tag_relations.where(friend: friend).any?
+  def book_rated?(book)
+    tag_relations.where(book: book).any?
   end
 
   # AUTO-UPDATE FIELDS
@@ -31,8 +31,8 @@ class Exchange < ApplicationRecord
 
   # VALIDATION
 
-  validates :friend_initier_id, presence: true
-  validates :friend_receiver_id, presence: true
+  validates :book_initier_id, presence: true
+  validates :book_receiver_id, presence: true
 
   validate :check_different
   validate :check_owner
@@ -55,11 +55,11 @@ class Exchange < ApplicationRecord
   end
 
   def check_different
-    errors.add(:base, "不能交朋友反对自己") unless friend_initier.id != friend_receiver.id
+    errors.add(:base, "不能交朋友反对自己") unless book_initier.id != book_receiver.id
   end
 
   def check_available
-    errors.add(:base, "其中一位朋友不在") unless friend_initier.available? && friend_receiver.available?
+    errors.add(:base, "其中一位朋友不在") unless book_initier.available? && book_receiver.available?
   end
 
   def check_unavailable
@@ -67,7 +67,7 @@ class Exchange < ApplicationRecord
   end
 
   def check_owner
-    errors.add(:base, "无法交易同一用户的两个朋友") unless friend_initier.user.id != friend_receiver.user.id
+    errors.add(:base, "无法交易同一用户的两个朋友") unless book_initier.user.id != book_receiver.user.id
   end
 
   def check_tags_count

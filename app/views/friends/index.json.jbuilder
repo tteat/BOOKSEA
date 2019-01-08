@@ -1,1 +1,1 @@
-json.array! @friends, partial: 'friends/friend', as: :friend
+json.array! @books, partial: 'books/book', as: :book

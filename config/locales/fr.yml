@@ -4,7 +4,7 @@ fr:
     models:
       category: category
       exchange: exchange
-      friend: Ami
+      book: Ami
       tag_relation: Tag
       tag: Tag
       user: user
@@ -15,7 +15,7 @@ fr:
         current_password: "当前密码"
         first_name: "姓名"
         phone: "电话"
-      friend:
+      book:
         avatar: "图片"
         first_name: "姓名"
         description: "简介"

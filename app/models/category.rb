@@ -1,5 +1,5 @@
 class Category < ApplicationRecord
-  has_many :friends
+  has_many :books
 
   # VALIDATION
 

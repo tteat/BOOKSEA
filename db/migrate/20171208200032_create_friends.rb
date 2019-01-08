@@ -1,6 +1,6 @@
-class CreateFriends < ActiveRecord::Migration[5.1]
+class CreateBooks < ActiveRecord::Migration[5.1]
   def change
-    create_table :friends do |t|
+    create_table :books do |t|
       t.string :first_name
       t.date :birthday
       t.boolean :is_male

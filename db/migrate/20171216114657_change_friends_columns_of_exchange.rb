@@ -1,6 +1,6 @@
-class ChangeFriendsColumnsOfExchange < ActiveRecord::Migration[5.1]
+class ChangeBooksColumnsOfExchange < ActiveRecord::Migration[5.1]
   def change
-    rename_column :exchanges, :friend1_id, :friend_initier_id
-    rename_column :exchanges, :friend2_id, :friend_receiver_id
+    rename_column :exchanges, :book1_id, :book_initier_id
+    rename_column :exchanges, :book2_id, :book_receiver_id
   end
 end

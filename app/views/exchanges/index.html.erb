@@ -29,14 +29,14 @@
         <div class="col-md-6 offset-md-3">
 
           <% if @exchanges_active.each do |exchange| %>
-            <% friends = distinct_friends exchange %>
+            <% books = distinct_books exchange %>
             <div class="card bg-light my-3">
               <div class="card-body text-center">
                 <div class="row">
                   <div class="col-sm-4">
-                    <%= link_to friends.first, class: 'link-clean' do %>
-                      <%= image_tag friends.first.avatar.url(:thumb), class: 'img-fluid img-thumbnail' %>
-                      <%= friends.first.first_name %>
+                    <%= link_to books.first, class: 'link-clean' do %>
+                      <%= image_tag books.first.avatar.url(:thumb), class: 'img-fluid img-thumbnail' %>
+                      <%= books.first.first_name %>
                     <% end %>
                   </div>
                   <div class="col-sm-4">
@@ -49,9 +49,9 @@
                     </p>
                   </div>
                   <div class="col-sm-4">
-                    <%= link_to friends.second, class: 'link-clean' do %>
-                      <%= image_tag friends.second.avatar.url(:thumb), class: 'img-fluid img-thumbnail' %>
-                      <%= friends.second.first_name %>
+                    <%= link_to books.second, class: 'link-clean' do %>
+                      <%= image_tag books.second.avatar.url(:thumb), class: 'img-fluid img-thumbnail' %>
+                      <%= books.second.first_name %>
                     <% end %>
                   </div>
                 </div>
@@ -70,15 +70,15 @@
         <div class="col-md-6 offset-md-3">
 
           <% if @exchanges_past.each do |exchange| %>
-            <% friends = distinct_friends exchange %>
-            <% exchange_rated = exchange.friend_rated? friends.second %>
+            <% books = distinct_books exchange %>
+            <% exchange_rated = exchange.book_rated? books.second %>
             <div class="card bg-light my-3">
               <div class="card-body text-center">
                 <div class="row">
                   <div class="col-sm-4">
-                    <%= link_to friends.first, class: 'link-clean' do %>
-                      <%= image_tag friends.first.avatar.url(:thumb), class: 'img-fluid img-thumbnail' %>
-                      <%= friends.first.first_name %>
+                    <%= link_to books.first, class: 'link-clean' do %>
+                      <%= image_tag books.first.avatar.url(:thumb), class: 'img-fluid img-thumbnail' %>
+                      <%= books.first.first_name %>
                     <% end %>
                   </div>
                   <div class="col-sm-4">
@@ -95,9 +95,9 @@
                     <% end %>
                   </div>
                   <div class="col-sm-4">
-                    <%= link_to friends.second, class: 'link-clean' do %>
-                      <%= image_tag friends.second.avatar.url(:thumb), class: 'img-fluid img-thumbnail' %>
-                      <%= friends.second.first_name %>
+                    <%= link_to books.second, class: 'link-clean' do %>
+                      <%= image_tag books.second.avatar.url(:thumb), class: 'img-fluid img-thumbnail' %>
+                      <%= books.second.first_name %>
                     <% end %>
                   </div>
                 </div>

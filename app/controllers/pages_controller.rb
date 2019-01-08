@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   def index
     @category = Category.first
-    @most_traded = Friend.active.with_exchanges_count :desc
+    @most_traded = Book.active.with_exchanges_count :desc
     @tags_by_category = Tag.best_tags_by_category
   end
 
@@ -14,9 +14,9 @@ class PagesController < ApplicationController
     if @category.blank?
       redirect_to root_path
     elsif tag_ids.blank?
-      @results = Friend.active.category(@category).latest
+      @results = Book.active.category(@category).latest
     else
-      @results = Friend.active.category(@category).with_tags(tag_ids, :desc)
+      @results = Book.active.category(@category).with_tags(tag_ids, :desc)
     end
   end
 end

@@ -1,14 +1,14 @@
 Rails.application.routes.draw do
   root 'pages#index'
 
-  resources :friends, except: %i[destroy]
+  resources :books, except: %i[destroy]
 
   get 'search/(:category_name).(:category)/(:tag_name).(:tag)' => 'pages#search', as: 'search_get'
   get 'search' => redirect('/')
   post 'search' => 'pages#search', as: 'search_post'
 
   get 'activities' => 'activities#index', as: 'activities'
-  get 'activities/new/(:friend_id).(:other_id)' => 'activities#new', as: 'activities_new'
+  get 'activities/new/(:book_id).(:other_id)' => 'activities#new', as: 'activities_new'
   post 'activities/create' => 'activities#create', as: 'activities_create'
   get 'activities/finish/(:id)' => 'activities#get_finish', as: 'activities_get_finish'
   post 'activities/finish/(:id)' => 'activities#post_finish', as: 'activities_post_finish'
@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   post 'activities/rate/(:id)' => 'activities#post_rate', as: 'activities_post_rate'
 
   get 'exchanges' => 'exchanges#index', as: 'exchanges'
-  get 'exchanges/new/(:friend_id).(:other_id)' => 'exchanges#new', as: 'exchanges_new'
+  get 'exchanges/new/(:book_id).(:other_id)' => 'exchanges#new', as: 'exchanges_new'
   post 'exchanges/create' => 'exchanges#create', as: 'exchanges_create'
   get 'exchanges/finish/(:id)' => 'exchanges#get_finish', as: 'exchanges_get_finish'
   post 'exchanges/finish/(:id)' => 'exchanges#post_finish', as: 'exchanges_post_finish'

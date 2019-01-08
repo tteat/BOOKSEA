@@ -1,1 +1,1 @@
-json.partial! "friends/friend", friend: @friend
+json.partial! "books/book", book: @book

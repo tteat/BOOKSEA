@@ -7,7 +7,7 @@
 
 <div class="container mt-5">
   <%= render partial: "shared/flash", flash: flash %>
-  <% friend, other = distinct_friends @exchange %>
+  <% book, other = distinct_books @exchange %>
   <div class="row">
     <div class="col-md-6 offset-md-3">
       <%= errors_for @exchange %>
@@ -21,8 +21,8 @@
           <div class="row">
             <div class="col-sm-4">
 <!--              Reprendre 恢复-->
-              <%= image_tag friend.avatar.url(:thumb), class: 'img-fluid img-thumbnail' %>
-              <%= friend.first_name %>
+              <%= image_tag book.avatar.url(:thumb), class: 'img-fluid img-thumbnail' %>
+              <%= book.first_name %>
             </div>
             <div class="col-sm-4">
               <h5 class="mt-5">⇔</h5>

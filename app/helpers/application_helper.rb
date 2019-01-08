@@ -24,7 +24,7 @@ module ApplicationHelper
 
   def age(d)
     now = Time.now.utc.to_date
-    # d = friend.birthday
+    # d = book.birthday
     now.year - d.year - (now.month > d.month || (now.month == d.month && now.day >= d.day) ? 0 : 1)
   end
 

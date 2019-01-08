@@ -16,17 +16,17 @@
 <div class="container mt-5">
 
   <div class="row">
-    <% if @results.limit(50).each do |friend| %>
+    <% if @results.limit(50).each do |book| %>
       <div class="col-md-3 mb-4">
-        <%= link_to friend, class: 'link-clean' do %>
+        <%= link_to book, class: 'link-clean' do %>
           <div class="card">
-            <%= image_tag friend.avatar.url(:thumb), class: 'img-fluid' %>
+            <%= image_tag book.avatar.url(:thumb), class: 'img-fluid' %>
             <div class="card-body">
-              <h4 class="m-0 tag-text"><%= friend.first_name %></h4>
-              <% friend.tags_sorted[0...3].each do |tag| %>
-                <span class="badge badge-info"><%= tag.first.label friend %></span>
+              <h4 class="m-0 tag-text"><%= book.first_name %></h4>
+              <% book.tags_sorted[0...3].each do |tag| %>
+                <span class="badge badge-info"><%= tag.first.label book %></span>
               <% end %>
-              <p class="m-0 tag-text"><%= truncate(friend.description, length: 30) %></p>
+              <p class="m-0 tag-text"><%= truncate(book.description, length: 30) %></p>
             </div>
           </div>
         <% end %>

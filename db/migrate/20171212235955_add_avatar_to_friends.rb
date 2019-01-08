@@ -1,9 +1,9 @@
-class AddAvatarToFriends < ActiveRecord::Migration[5.1]
+class AddAvatarTobooks < ActiveRecord::Migration[5.1]
   def self.up
-    add_attachment :friends, :avatar
+    add_attachment :books, :avatar
   end
 
   def self.down
-    remove_attachment :friends, :avatar
+    remove_attachment :books, :avatar
   end
 end

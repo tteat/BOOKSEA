@@ -8,8 +8,8 @@ class ExchangesController < ApplicationController
 
   def index
     # List exchanges of user
-    friends = current_user.friends
-    @exchanges = Exchange.of_friend(friends).latest
+    books = current_user.books
+    @exchanges = Exchange.of_book(books).latest
     @exchanges_active = []
     @exchanges_past = []
     @exchanges.each do |exchange|
@@ -18,17 +18,17 @@ class ExchangesController < ApplicationController
   end
 
   def new
-    # Get friends from GET params
-    @friend = Friend.find(params[:friend_id])
-    @other = Friend.find(params[:other_id])
+    # Get books from GET params
+    @book = Book.find(params[:book_id])
+    @other = Book.find(params[:other_id])
     check_exchange_author && return
     @exchange = Exchange.new
   end
 
   def create
-    # Get friends from POST params
-    @friend = Friend.find_by_id(params[:exchange][:friend_initier_id])
-    @other = Friend.find_by_id(params[:exchange][:friend_receiver_id])
+    # Get books from POST params
+    @book = Book.find_by_id(params[:exchange][:book_initier_id])
+    @other = Book.find_by_id(params[:exchange][:book_receiver_id])
     check_exchange_author && return
     @exchange = Exchange.new(exchange_params_create)
     if @exchange.save
@@ -51,12 +51,12 @@ class ExchangesController < ApplicationController
   end
 
   def get_rate
-    @friend = distinct_friends(@exchange).second
+    @book = distinct_books(@exchange).second
     render :rate
   end
 
   def post_rate
-    @friend = distinct_friends(@exchange).second
+    @book = distinct_books(@exchange).second
 
     if @exchange.update(exchange_params_rate)
       redirect_to exchanges_path, notice: '已提交！'
@@ -71,7 +71,7 @@ class ExchangesController < ApplicationController
   def check_and_set_exchange
     @exchange = Exchange.find(params[:id])
     # should not happen, so an alert is not necessary
-    return redirect_to root_path unless @exchange.friends.count { |f| f.user == current_user } == 1
+    return redirect_to root_path unless @exchange.books.count { |f| f.user == current_user } == 1
   end
 
   def check_exchange_active
@@ -83,8 +83,8 @@ class ExchangesController < ApplicationController
   end
 
   def check_exchange_author
-    return redirect_to root_path unless @friend.user == current_user &&
-                                        @friend.available? &&
+    return redirect_to root_path unless @book.user == current_user &&
+                                        @book.available? &&
                                         @other.user != current_user &&
                                         @other.available?
   end
@@ -92,14 +92,14 @@ class ExchangesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def exchange_params_create
     params.require(:exchange)
-          .permit(:friend_receiver_id, :friend_initier_id)
+          .permit(:book_receiver_id, :book_initier_id)
           .merge(is_active: true)
   end
 
   def exchange_params_rate
     result = params.require(:exchange)
                    .permit(tag_relations_attributes: [:tag_id])
-    result[:tag_relations_attributes].map { |t| t[:friend_id] = @friend.id }
+    result[:tag_relations_attributes].map { |t| t[:book_id] = @book.id }
     result
   end
 end

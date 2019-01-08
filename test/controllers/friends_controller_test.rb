@@ -1,48 +1,48 @@
 require 'test_helper'
 
-class FriendsControllerTest < ActionDispatch::IntegrationTest
+class BooksControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @friend = friends(:one)
+    @book = books(:one)
   end
 
   test "should get index" do
-    get friends_url
+    get books_url
     assert_response :success
   end
 
   test "should get new" do
-    get new_friend_url
+    get new_book_url
     assert_response :success
   end
 
-  test "should create friend" do
-    assert_difference('Friend.count') do
-      post friends_url, params: { friend: { birthday: @friend.birthday, category_id: @friend.category_id, description: @friend.description, first_name: @friend.first_name, is_male: @friend.is_male, user_id: @friend.user_id } }
+  test "should create book" do
+    assert_difference('Book.count') do
+      post books_url, params: { book: { birthday: @book.birthday, category_id: @book.category_id, description: @book.description, first_name: @book.first_name, is_male: @book.is_male, user_id: @book.user_id } }
     end
 
-    assert_redirected_to friend_url(Friend.last)
+    assert_redirected_to book_url(Book.last)
   end
 
-  test "should show friend" do
-    get friend_url(@friend)
+  test "should show book" do
+    get book_url(@book)
     assert_response :success
   end
 
   test "should get edit" do
-    get edit_friend_url(@friend)
+    get edit_book_url(@book)
     assert_response :success
   end
 
-  test "should update friend" do
-    patch friend_url(@friend), params: { friend: { birthday: @friend.birthday, category_id: @friend.category_id, description: @friend.description, first_name: @friend.first_name, is_male: @friend.is_male, user_id: @friend.user_id } }
-    assert_redirected_to friend_url(@friend)
+  test "should update book" do
+    patch book_url(@book), params: { book: { birthday: @book.birthday, category_id: @book.category_id, description: @book.description, first_name: @book.first_name, is_male: @book.is_male, user_id: @book.user_id } }
+    assert_redirected_to book_url(@book)
   end
 
-  test "should destroy friend" do
-    assert_difference('Friend.count', -1) do
-      delete friend_url(@friend)
+  test "should destroy book" do
+    assert_difference('Book.count', -1) do
+      delete book_url(@book)
     end
 
-    assert_redirected_to friends_url
+    assert_redirected_to books_url
   end
 end

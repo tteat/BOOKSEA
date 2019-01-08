@@ -4,8 +4,8 @@
 <div class="container img-profile-container">
 
   <div class="img-profile-header">
-    <%= link_to @friend.avatar.url(:original), target: '_blank' do %>
-      <%= image_tag @friend.avatar.url(:thumb), class: 'img-profile-img img-thumbnail' %>
+    <%= link_to @book.avatar.url(:original), target: '_blank' do %>
+      <%= image_tag @book.avatar.url(:thumb), class: 'img-profile-img img-thumbnail' %>
     <% end %>
   </div>
 
@@ -13,19 +13,19 @@
 
 <div class="container text-center img-profile-content">
 
-  <h2><%= @friend.first_name %></h2>
+  <h2><%= @book.first_name %></h2>
 
   <p class="mb-1">
     <em>
 
-      <%= @friend.is_male ? '外文' : '中文' %>,
-      <%= @friend.category.name %>
+      <%= @book.is_male ? '外文' : '中文' %>,
+      <%= @book.category.name %>
     </em>
   </p>
 
   <p class="mb-1">
-    <% if @friend.user == current_user %>
-      <%= link_to '修改', edit_friend_path(@friend), class: 'btn btn-success' %>
+    <% if @book.user == current_user %>
+      <%= link_to '修改', edit_book_path(@book), class: 'btn btn-success' %>
     <% else %>
       <% if !user_signed_in? %>
         <%= link_to "登录", new_user_session_path, class: 'btn btn-primary' %>
@@ -33,11 +33,11 @@
         <button class="btn btn-primary" data-toggle="modal" data-target="#exchange-modal">
           交换
         </button>
-      <% elsif current_user.friends.empty? %>
+      <% elsif current_user.books.empty? %>
         <button class="btn btn-outline-primary" disabled>
           没有书籍可交换
         </button>
-      <% elsif @friend.available? %>
+      <% elsif @book.available? %>
         <button class="btn btn-outline-primary" disabled>
           没有书籍可交换
         </button>
@@ -48,16 +48,16 @@
       <% end %>
 
       <% if current_user.try(:is_admin) %>
-        <%= link_to '修改', edit_friend_path(@friend), class: 'btn btn-success' %>
+        <%= link_to '修改', edit_book_path(@book), class: 'btn btn-success' %>
       <% end %>
     <% end %>
   </p>
 
-  <p class="mb-1"><%= @friend.exchanges.size %> 次交换</p>
+  <p class="mb-1"><%= @book.exchanges.size %> 次交换</p>
 
   <h5 class="mt-4">简介:</h5>
   <p>
-    <%= @friend.description %>
+    <%= @book.description %>
   </p>
 
   <h5 class="mt-4" style="text-align: center">评论:</h5>
@@ -113,7 +113,7 @@
 
   <p class="mt-3" style="text-align: center">
     <em>联系它的主人  &nbsp;&nbsp;&nbsp;邮箱 :</em>
-    <%= @friend.user.email %>
+    <%= @book.user.email %>
   </p>
 </div>
 
@@ -130,11 +130,11 @@
         <div class="modal-body">
 
           <div class="row">
-            <% @friends_to_exchange.each do |f| %>
+            <% @books_to_exchange.each do |f| %>
               <div class="col-md-4 text-center my-1">
                 <%= link_to exchanges_new_path(
-                  friend_id: f.id,
-                  other_id: @friend.id
+                  book_id: f.id,
+                  other_id: @book.id
                 ), class: 'link-clean' do %>
                   <%= image_tag f.avatar.url(:thumb), class: 'img-thumbnail' %>
                   <%= f.first_name %>

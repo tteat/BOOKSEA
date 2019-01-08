@@ -1,6 +1,6 @@
 # Dataset
 users_count = 20
-friends_count = 50
+books_count = 50
 
 first_names_male = [
     "Data Mining", "The ABC Murders","PRIDE AND PREJUDICE","THE GRAPES OF WRATH","UTRILLO","Je mange ce qui me reussit",
@@ -69,20 +69,20 @@ tags << Tag.create!(label_male: '美食烹饪', label_female: '美食烹饪')
 tags << Tag.create!(label_male: '旅游摄影', label_female: '旅游摄影')
 tags << Tag.create!(label_male: '其它', label_female: '其它')
 
-# Friends
-puts "Creating #{friends_count} friends, linked to ~#{friends_count * 3} tags..."
-friends = []
+# Books
+puts "Creating #{books_count} books, linked to ~#{books_count * 3} tags..."
+books = []
 date_min = Date.new(2000, 12, 12)
 date_max = Date.new(1990, 1, 1)
 i = 0
-friends_count.times do
+books_count.times do
   i += 1
-  male = i <= friends_count / 2
+  male = i <= books_count / 2
   img = (male ? "male/#{i}" : "female/#{i-25}") + '.jpg'
   first_name = male ? first_names_male[i-1] : first_names_female[i-26]
   date = (date_min + (date_max - date_min) * rand).to_date
-  friends << Friend.create!(
-    avatar: File.new("#{Rails.root}/app/assets/images/seeds/friends/#{img}"),
+  books << Book.create!(
+    avatar: File.new("#{Rails.root}/app/assets/images/seeds/books/#{img}"),
     first_name: first_name,
     birthday: date,
     is_male: male,
@@ -94,29 +94,29 @@ friends_count.times do
 end
 
 # Old exchanges
-exchanges_created = (friends_count * 0.5 * (1 + 5) / 2).floor
+exchanges_created = (books_count * 0.5 * (1 + 5) / 2).floor
 tags_created = exchanges_created * (2 + 5)
 puts "Creating ~#{exchanges_created} exchanges"\
      ", linked to ~#{tags_created} tags..."
-friends.sample(friends_count * 0.5).each do |friend|
+books.sample(books_count * 0.5).each do |book|
   rand(1..5).times do
-    other_friend = friends.sample(20).detect { |other| other.id != friend.id && other.user_id != friend.user_id }
+    other_book = books.sample(20).detect { |other| other.id != book.id && other.user_id != book.user_id }
     exchange_old = Exchange.create! is_active: false,
-                                    friend_initier_id: friend.id,
-                                    friend_receiver_id: other_friend.id
+                                    book_initier_id: book.id,
+                                    book_receiver_id: other_book.id
 
-    [friend, other_friend].each do |f|
+    [book, other_book].each do |f|
       tags.sample(rand(2..5)).each do |tag|
-        TagRelation.create! exchange: exchange_old, tag: tag, friend: f
+        TagRelation.create! exchange: exchange_old, tag: tag, book: f
       end
     end
   end
 end
 
 # Current exchanges
-puts "Creating #{(friends.size / 4).floor} active exchanges..."
-friends.sample(friends.size / 2).each_slice(2).each do |a, b|
-  Exchange.create! is_active: true, friend_initier: a, friend_receiver: b if b and a.user != b.user
+puts "Creating #{(books.size / 4).floor} active exchanges..."
+books.sample(books.size / 2).each_slice(2).each do |a, b|
+  Exchange.create! is_active: true, book_initier: a, book_receiver: b if b and a.user != b.user
 end
 
 puts 'Done!'

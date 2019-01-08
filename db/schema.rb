@@ -20,17 +20,17 @@ ActiveRecord::Schema.define(version: 20171216114657) do
 
   create_table "exchanges", force: :cascade do |t|
     t.boolean "is_active"
-    t.integer "friend_initier_id"
-    t.integer "friend_receiver_id"
+    t.integer "book_initier_id"
+    t.integer "book_receiver_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "start_date"
     t.datetime "end_date"
-    t.index ["friend_initier_id"], name: "index_exchanges_on_friend_initier_id"
-    t.index ["friend_receiver_id"], name: "index_exchanges_on_friend_receiver_id"
+    t.index ["book_initier_id"], name: "index_exchanges_on_book_initier_id"
+    t.index ["book_receiver_id"], name: "index_exchanges_on_book_receiver_id"
   end
 
-  create_table "friends", force: :cascade do |t|
+  create_table "books", force: :cascade do |t|
     t.string "first_name"
     t.date "birthday"
     t.boolean "is_male"
@@ -44,18 +44,18 @@ ActiveRecord::Schema.define(version: 20171216114657) do
     t.string "avatar_content_type"
     t.integer "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.index ["category_id"], name: "index_friends_on_category_id"
-    t.index ["user_id"], name: "index_friends_on_user_id"
+    t.index ["category_id"], name: "index_books_on_category_id"
+    t.index ["user_id"], name: "index_books_on_user_id"
   end
 
   create_table "tag_relations", force: :cascade do |t|
     t.integer "exchange_id"
     t.integer "tag_id"
-    t.integer "friend_id"
+    t.integer "book_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["exchange_id"], name: "index_tag_relations_on_exchange_id"
-    t.index ["friend_id"], name: "index_tag_relations_on_friend_id"
+    t.index ["book_id"], name: "index_tag_relations_on_book_id"
     t.index ["tag_id"], name: "index_tag_relations_on_tag_id"
   end
 

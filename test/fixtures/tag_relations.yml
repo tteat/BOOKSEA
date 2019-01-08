@@ -3,9 +3,9 @@
 one:
   exchange: one
   tag: one
-  friend: one
+  book: one
 
 two:
   exchange: two
   tag: two
-  friend: two
+  book: two

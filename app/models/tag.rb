@@ -3,23 +3,23 @@ class Tag < ApplicationRecord
   MAX_ASSOC = 5
 
   has_many :tag_relations
-  has_many :friends, through: :tag_relations
+  has_many :books, through: :tag_relations
 
   def label(test)
-    return test.is_male ? label_male : label_female if test.is_a? Friend
+    return test.is_male ? label_male : label_female if test.is_a? Book
     test ? label_male : label_female
   end
 
-  def friends_grouped
+  def books_grouped
     groups = Hash.new(0)
-    friends.each do |friend|
-      groups[friend] += 1
+    books.each do |book|
+      groups[book] += 1
     end
     groups
   end
 
-  def friends_sorted(asc = false)
-    friends_grouped.sort_by { |_, v| v }.tap { |o| o.reverse! unless asc }
+  def books_sorted(asc = false)
+    books_grouped.sort_by { |_, v| v }.tap { |o| o.reverse! unless asc }
   end
 
   def self.best_tags_by_category
@@ -28,11 +28,11 @@ class Tag < ApplicationRecord
     tags_by_category = Tag.select('tags.*, '\
                               'categories.id as category_id, '\
                               'categories.name as category_name, '\
-                              'COUNT(DISTINCT friends.id) as count')
+                              'COUNT(DISTINCT books.id) as count')
                       .joins(:tag_relations)
-                      .joins(:friends)
-                      .joins('INNER JOIN categories ON categories.id = friends.category_id')
-                      .where('friends.disabled' => false)
+                      .joins(:books)
+                      .joins('INNER JOIN categories ON categories.id = books.category_id')
+                      .where('books.disabled' => false)
                       .group('categories.id, tags.id')
     hash = Hash.new(0)
     tags_by_category.each do |tag|
@@ -41,18 +41,18 @@ class Tag < ApplicationRecord
     hash.values.sort_by { |entry| entry[0] }.reverse.map { |entry| entry[1] }
 
     # ... as the following query works in SQLite, but not in PostgreSQL
-    # Tag.select('id, label_male, category_name, category_id, MAX(friends_count) as count')
+    # Tag.select('id, label_male, category_name, category_id, MAX(books_count) as count')
     #                    .from(
     #                      Tag.select(
     #                        'tags.*, '\
     #                        'categories.id as category_id, '\
     #                        'categories.name as category_name, '\
-    #                        'COUNT(DISTINCT friends.id) as friends_count'
+    #                        'COUNT(DISTINCT books.id) as books_count'
     #                      )
     #                      .joins(:tag_relations)
-    #                      .joins(:friends)
-    #                      .joins('INNER JOIN categories ON categories.id = friends.category_id')
-    #                      .where('friends.disabled' => false)
+    #                      .joins(:books)
+    #                      .joins('INNER JOIN categories ON categories.id = books.category_id')
+    #                      .where('books.disabled' => false)
     #                      .group('categories.id, tags.id')
     #                   )
     #                   .group('category_id')
