@@ -1,0 +1,26 @@
+
+<div class="header header-5"></div>
+
+<div class="container text-center img-profile-content">
+
+  <h2><%= @activity.title %></h2>
+
+  <p class="mb-1">
+        <button class="btn btn-primary" data-toggle="modal">
+          加入
+        </button>
+
+  </p>
+
+  <h5 class="mt-4">活动内容</h5>
+  <div class="comment-wrap">
+    <div class="comment-block">
+      <p class="comment-text"><%= @activity.content %></p>
+      <div class="bottom-comment">
+        <div class="comment-date">截止时间：<%= @activity.ended_at %></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+

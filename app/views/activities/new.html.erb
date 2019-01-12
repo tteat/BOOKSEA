@@ -1,0 +1,11 @@
+
+<div class="header header-2">
+  <div class="container">
+    <h1>添加活动</h1>
+    </div>
+</div>
+
+<div class="container mt-5">
+  <%= render partial: "shared/flash", flash: flash %>
+  <%= render 'form', activity: @activity, mode: :new %>
+</div>

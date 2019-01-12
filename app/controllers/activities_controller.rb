@@ -4,37 +4,62 @@ class ActivitiesController < ApplicationController
   before_action :check_and_set_exchange, only: %i[get_finish post_finish get_rate post_rate]
   before_action :check_exchange_active, only: %i[get_finish post_finish]
   before_action :check_exchange_unactive_unrated, only: %i[get_rate post_rate]
+  before_action :set_activity, only: %i[show edit update]
   before_action :authenticate_user!
 
+  def set_activity
+    @activity = Activity.find(params[:id])
+  end
+
   def index
-    # List exchanges of user
-    books = current_user.books
-    @exchanges = Exchange.of_book(books).latest
-    @exchanges_active = []
-    @exchanges_past = []
-    @exchanges.each do |exchange|
-      (exchange.is_active ? @exchanges_active : @exchanges_past) << exchange
+    # List activities
+    @activities = Activity.of_user current_user
+    @activities_active = []
+    @activities_past = []
+    @activities.each do |exchange|
+      (exchange.ended_at > 2019-01-13 ? @activities_active : @activities_past) << exchange
     end
+  end
+
+  def show
+    if current_user
+      @books_to_exchange = current_user.books.select { |f| f.available? }
+    else
+      @books_to_exchange = Book.none
+    end
+    @can_exchange = @books_to_exchange.any?
   end
 
   def new
     # Get books from GET params
-    @book = Book.find(params[:book_id])
-    @other = Book.find(params[:other_id])
-    check_exchange_author && return
-    @exchange = Exchange.new
+    # @book = Book.find(params[:book_id])
+    # @other = Book.find(params[:other_id])
+    # check_exchange_author && return
+    # @exchange = Exchange.new
+    @activity = Activity.new
   end
 
   def create
     # Get books from POST params
-    @book = Book.find_by_id(params[:exchange][:book_initier_id])
-    @other = Book.find_by_id(params[:exchange][:book_receiver_id])
-    check_exchange_author && return
-    @exchange = Exchange.new(exchange_params_create)
-    if @exchange.save
-      redirect_to exchanges_url, notice: "已经开始交换啦！"
-    else
-      render :new
+    # @book = Book.find_by_id(params[:exchange][:book_initier_id])
+    # @other = Book.find_by_id(params[:exchange][:book_receiver_id])
+    # check_exchange_author && return
+    # @exchange = Exchange.new(exchange_params_create)
+    # if @exchange.save
+    #   redirect_to exchanges_url, notice: "已经开始交换啦！"
+    # else
+    #   render :new
+    # end
+    @activity = Activity.new(activity_params_create)
+
+    respond_to do |format|
+      if @activity.save
+        format.html { redirect_to @activity, notice: '添加成功！' }
+        format.json { render :show, status: :created, location: @activity }
+      else
+        format.html { render :new }
+        format.json { render json: @activity.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -90,10 +115,15 @@ class ActivitiesController < ApplicationController
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
-  def exchange_params_create
-    params.require(:exchange)
-          .permit(:book_receiver_id, :book_initier_id)
-          .merge(is_active: true)
+  # def exchange_params_create
+  #   params.require(:exchange)
+  #         .permit(:book_receiver_id, :book_initier_id)
+  #         .merge(is_active: true)
+  # end
+  def activity_params_create
+    params.require(:activity)
+        .permit(:title, :ended_at, :content)
+        .merge(user_id: current_user.id)
   end
 
   def exchange_params_rate

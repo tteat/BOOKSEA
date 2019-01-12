@@ -2,6 +2,7 @@
 <div class="header header-6">
   <div class="container">
     <h1>活动</h1>
+    <%= link_to '发布', new_activity_path(), class: 'btn btn-success' %>
   </div>
 </div>
 
@@ -26,6 +27,31 @@
   </ul>
   <div class="tab-content">
     <div class="tab-pane fade show active" id="exchanges-actives">
+      <div class="container mt-5">
+        <%= render partial: "shared/flash", flash: flash %>
+
+        <div class="row">
+          <% if @activities_active.each do |book| %>
+            <div class="col-md-6 mb-4">
+              <%= link_to book, class: 'link-clean' do %>
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="m-0 tag-text">
+                      <%= book.title %><small class="text-muted">
+                    </small>
+                    </h4>
+                    <p class="m-0 tag-text"><%= truncate(book.content, length: 30) %></p>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          <% end.empty? %>
+            <div class="container-fluid text-center">
+              <h4 class="mt-3 text-center text-muted">还没有活动哦~</h4>
+            </div>
+          <% end %>
+        </div>
+      </div>
 
       <div class="row">
         <div class="col-md-6 offset-md-3">
@@ -59,14 +85,33 @@
 <!--                </div>-->
 <!--              </div>-->
 <!--            </div>-->
-          <%# end.empty? %>
-            <h4 class="mt-3 text-center text-muted">还没有活动哦~</h4>
-          <%# end %>
 
         </div>
       </div>
     </div>
     <div class="tab-pane fade" id="exchanges-past">
+      <div class="row">
+        <% if @activities_past.each do |book| %>
+          <div class="col-md-6 mb-4">
+            <%= link_to book, class: 'link-clean' do %>
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="m-0 tag-text">
+                    <%= book.title %><small class="text-muted">
+                  </small>
+                  </h4>
+                  <p class="m-0 tag-text"><%= truncate(book.content, length: 30) %></p>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end.empty? %>
+          <div class="container-fluid text-center">
+            <h4 class="mt-3 text-center text-muted">没有历史活动</h4>
+          </div>
+        <% end %>
+      </div>
+    </div>
 
       <div class="row">
         <div class="col-md-6 offset-md-3">
@@ -93,9 +138,6 @@
 <!--                </div>-->
 <!--              </div>-->
 <!--            </div>-->
-          <%# end.empty? %>
-            <h4 class="mt-3 text-center text-muted">没有历史活动</h4>
-          <%# end %>
 
         </div>
       </div>

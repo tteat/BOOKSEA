@@ -14,16 +14,16 @@
 <% end -%>
 
 <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-  <% links << (link_to "Pas reçu le mail de confirmation ?", new_confirmation_path(resource_name)) %>
+  <% links << (link_to "没有收到确认电子邮件?", new_confirmation_path(resource_name)) %>
 <% end -%>
 
 <%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
-  <% links << (link_to "Pas reçu le mail de débloquage ?", new_unlock_path(resource_name)) %>
+  <% links << (link_to "没有收到解锁电子邮件?", new_unlock_path(resource_name)) %>
 <% end -%>
 
 <%- if devise_mapping.omniauthable? %>
   <%- resource_class.omniauth_providers.each do |provider| %>
-    <% links << (link_to "Connexion avec #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider)) %>
+    <% links << (link_to "连接 #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider)) %>
   <% end -%>
 <% end -%>
 

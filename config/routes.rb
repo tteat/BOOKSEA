@@ -2,18 +2,19 @@ Rails.application.routes.draw do
   root 'pages#index'
 
   resources :books, except: %i[destroy]
+  resources :activities, except: %i[destroy]
 
   get 'search/(:category_name).(:category)/(:tag_name).(:tag)' => 'pages#search', as: 'search_get'
   get 'search' => redirect('/')
   post 'search' => 'pages#search', as: 'search_post'
 
-  get 'activities' => 'activities#index', as: 'activities'
-  get 'activities/new/(:book_id).(:other_id)' => 'activities#new', as: 'activities_new'
-  post 'activities/create' => 'activities#create', as: 'activities_create'
-  get 'activities/finish/(:id)' => 'activities#get_finish', as: 'activities_get_finish'
-  post 'activities/finish/(:id)' => 'activities#post_finish', as: 'activities_post_finish'
-  get 'activities/rate/(:id)' => 'activities#get_rate', as: 'activities_get_rate'
-  post 'activities/rate/(:id)' => 'activities#post_rate', as: 'activities_post_rate'
+  # get 'activities' => 'activities#index', as: 'activities'
+  # get 'activities/new' => 'activities#new', as: 'activities_new'
+  # post 'activities/create' => 'activities#create', as: 'activities_create'
+  # get 'activities/finish/(:id)' => 'activities#get_finish', as: 'activities_get_finish'
+  # post 'activities/finish/(:id)' => 'activities#post_finish', as: 'activities_post_finish'
+  # get 'activities/rate/(:id)' => 'activities#get_rate', as: 'activities_get_rate'
+  # post 'activities/rate/(:id)' => 'activities#post_rate', as: 'activities_post_rate'
 
   get 'exchanges' => 'exchanges#index', as: 'exchanges'
   get 'exchanges/new/(:book_id).(:other_id)' => 'exchanges#new', as: 'exchanges_new'
