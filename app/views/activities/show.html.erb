@@ -1,23 +1,30 @@
-
 <div class="header header-5"></div>
+<div class="img-profile-header">
 
+  <%#= link_to @book.avatar.url(:original), target: '_blank' do %>
+    <%#= image_tag @book.avatar.url(:thumb), class: 'img-profile-img img-thumbnail' %>
+  <%# end %>
+</div>
 <div class="container text-center img-profile-content">
 
-  <h2><%= @activity.title %></h2>
+  <h2 align="top"><%= @activity.title %></h2>
 
   <p class="mb-1">
         <button class="btn btn-primary" data-toggle="modal" id="joinin">
           加入
         </button>
-
   </p>
 
-  <h5 class="mt-4">活动内容</h5>
-  <div class="comment-wrap">
-    <div class="comment-block">
-      <p class="comment-text"><%= @activity.content %></p>
-      <div class="bottom-comment">
-        <div class="comment-date">截止时间：<%= @activity.ended_at %></div>
+  <h5 class="mt-4">详情</h5>
+  <div class="activity-wrap">
+    <div class="activity-block">
+      <p class="activity-text">内容：<%= @activity.content %></p>
+      <p class="activity-text">地点：<%= @activity.place %></p>
+      <div class="bottom-description">
+        <div class="activity-date">开始时间：<%= @activity.created_at %></div>
+      </div>
+      <div class="bottom_description">
+        <div class="activity-date">截止时间：<%= @activity.ended_at %></div>
       </div>
     </div>
   </div>

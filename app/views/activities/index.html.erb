@@ -12,35 +12,44 @@
     <li class="nav-item">
       <a class="nav-link active" data-toggle="tab" href="#exchanges-actives">
         正在进行
-<!--        <span class="badge badge-pill badge-primary"><%#= @exchanges_active.size %></span>-->
         <span class="badge badge-pill badge-primary"><%= @activities_active.size %></span>
       </a>
     </li>
+
     <li class="nav-item">
       <a class="nav-link" data-toggle="tab" href="#exchanges-past">
         历史活动
-<!--        <span class="badge badge-pill badge-secondary"><%#= @exchanges_past.size %></span>-->
         <span class="badge badge-pill badge-secondary"><%= @activities_past.size %></span>
       </a>
     </li>
+
   </ul>
+
   <div class="tab-content">
     <div class="tab-pane fade show active" id="exchanges-actives">
       <div class="container mt-5">
         <%= render partial: "shared/flash", flash: flash %>
 
         <div class="row">
-          <% if @activities_active.each do |book| %>
+          <% if @activities_active.each do |activity| %>
             <div class="col-md-6 mb-4">
-              <%= link_to book, class: 'link-clean' do %>
+              <%= link_to activity, class: 'link-clean' do %>
                 <div class="card">
+
+                  <%#= image_tag book.avatar.url(:thumb), class: 'img-fluid' %>
+
                   <div class="card-body">
-                    <h4 class="m-0 tag-text">
-                      <%= book.title %><small class="text-muted">
+                    <h4 class="m-0 tag-text" height="20dx">
+                      <%= activity.title %><small class="text-muted">
                     </small>
                     </h4>
-                    <p class="m-0 tag-text"><%= truncate(book.content, length: 30) %></p>
+                    <p class="m-0 tag-text">内容：<%= truncate(activity.content, length: 30) %></p>
+                    <p class="m-0 tag-text">地点：<%= truncate(activity.place, length: 30) %></p>
+<!--                    <button class="btn btn-primary" data-toggle="modal">-->
+<!--                      加入-->
+<!--                    </button>-->
                   </div>
+
                 </div>
               <% end %>
             </div>
@@ -55,51 +64,21 @@
       <div class="row">
         <div class="col-md-6 offset-md-3">
 
-          <%# if @exchanges_active.each do |exchange| %>
-            <%# books = distinct_books exchange %>
-<!--            <div class="card bg-light my-3">-->
-<!--              <div class="card-body text-center">-->
-<!--                <div class="row">-->
-<!--                  <div class="col-sm-4">-->
-                    <%#= link_to books.first, class: 'link-clean' do %>
-                      <%#= image_tag books.first.avatar.url(:thumb), class: 'img-fluid img-thumbnail' %>
-                      <%#= books.first.first_name %>
-                    <%# end %>
-<!--                  </div>-->
-<!--                  <div class="col-sm-4">-->
-<!--                    <p>-->
-<!--                     开始于：-->
-                      <%#= exchange.start_date.strftime("%m/%d/%Y  %H:%M:%S") %>
-<!--                    </p>-->
-<!--                    <p>-->
-                      <%#= link_to '结束活动', exchanges_get_finish_path(id: exchange.id), class: 'btn btn-primary' %>
-<!--                    </p>-->
-<!--                  </div>-->
-<!--                  <div class="col-sm-4">-->
-                    <%#= link_to books.second, class: 'link-clean' do %>
-                      <%#= image_tag books.second.avatar.url(:thumb), class: 'img-fluid img-thumbnail' %>
-                      <%#= books.second.first_name %>
-                    <%# end %>
-<!--                  </div>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </div>-->
-
         </div>
       </div>
     </div>
     <div class="tab-pane fade" id="exchanges-past">
       <div class="row">
-        <% if @activities_past.each do |book| %>
+        <% if @activities_past.each do |activity| %>
           <div class="col-md-6 mb-4">
-            <%= link_to book, class: 'link-clean' do %>
+            <%= link_to activity, class: 'link-clean' do %>
               <div class="card">
                 <div class="card-body">
                   <h4 class="m-0 tag-text">
-                    <%= book.title %><small class="text-muted">
+                    <%= activity.title %><small class="text-muted">
                   </small>
                   </h4>
-                  <p class="m-0 tag-text"><%= truncate(book.content, length: 30) %></p>
+                  <p class="m-0 tag-text"><%= truncate(activity.content, length: 30) %></p>
                 </div>
               </div>
             <% end %>
@@ -115,28 +94,6 @@
       <div class="row">
         <div class="col-md-6 offset-md-3">
 
-          <%# if @exchanges_past.each do |exchange| %>
-            <%# books = distinct_books exchange %>
-            <%# exchange_rated = exchange.book_rated? books.second %>
-<!--            <div class="card bg-light my-3">-->
-<!--              <div class="card-body text-center">-->
-<!--                <div class="row">-->
-<!--                  <div class="col-sm-4">-->
-                    <%#= link_to books.first, class: 'link-clean' do %>
-                      <%#= image_tag books.first.avatar.url(:thumb), class: 'img-fluid img-thumbnail' %>
-                      <%#= books.first.first_name %>
-                    <%# end %>
-<!--                  </div>-->
-
-<!--                  <div class="col-sm-4">-->
-                    <%#= link_to books.second, class: 'link-clean' do %>
-                      <%#= image_tag books.second.avatar.url(:thumb), class: 'img-fluid img-thumbnail' %>
-                      <%#= books.second.first_name %>
-                    <%# end %>
-<!--                  </div>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </div>-->
 
         </div>
       </div>

@@ -6,6 +6,12 @@
       <%= form_with(model: activity, local: true, multipart: true) do |form| %>
         <%#= errors_for book %>
 
+<!--        <div class="form-group">-->
+          <%#= form.label :avatar, "活动图片", class: "font-weight-bold" %>
+          <%#= form.file_field :avatar, id: :avatar, class: "form-control-file" %>
+<!--          <small class="form-text text-muted">最小尺寸为900x600</small>-->
+<!--        </div>-->
+
         <% if mode == :new %>
 
           <div class="row">
@@ -15,14 +21,28 @@
                 <%= form.text_field :title, id: :book_first_name, class: "form-control", placeholder: "标题" %>
               </div>
             </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= form.label :created_at, "开始时间", class: "font-weight-bold" %>
+                <div class="form-inline">
+                  <%= form.date_select :created_at, {
+                      :start_year => -3.years.ago.year,
+                      :end_year => 0.years.ago.year
+                  }, { id: :activity_start, class: "form-control mr-1" }
+                  %>
+                </div>
+              </div>
+            </div>
             <div class="col-md-6">
               <div class="form-group">
                 <%= form.label :ended_at, "截止时间", class: "font-weight-bold" %>
                 <div class="form-inline">
                   <%= form.date_select :ended_at, {
-                    :start_year => -3.years.ago.year,
-                    :end_year => 0.years.ago.year
-                  }, { id: :book_birthday, class: "form-control mr-1" }
+                      :start_year => -3.years.ago.year,
+                      :end_year => 0.years.ago.year
+                  }, { id: :activity_end, class: "form-control mr-1" }
                   %>
                 </div>
               </div>
@@ -32,8 +52,13 @@
         <% end %>
 
         <div class="form-group">
+          <%= form.label :"地点", class: "font-weight-bold" %>
+          <%= form.text_area :place, id: :activity_place, class: "form-control" %>
+          <small class="form-text text-muted">1-100个字</small>
+        </div>
+        <div class="form-group">
           <%= form.label :"内容", class: "font-weight-bold" %>
-          <%= form.text_area :content, id: :book_description, class: "form-control" %>
+          <%= form.text_area :content, id: :activity_description, class: "form-control" %>
           <small class="form-text text-muted">10-500个字</small>
         </div>
 
