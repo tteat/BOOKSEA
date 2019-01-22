@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :books, except: %i[destroy]
   resources :activities, except: %i[destroy]
+  post 'books/add_comment' => 'books#add_comment', as: 'add_comment'
 
   get 'search/(:category_name).(:category)/(:tag_name).(:tag)' => 'pages#search', as: 'search_get'
   get 'search' => redirect('/')

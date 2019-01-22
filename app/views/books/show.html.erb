@@ -24,6 +24,8 @@
   </p>
 
   <p class="mb-1">
+    <div id="current_user"><%= current_user %></div>
+    <div id="book_id"><%= @book.id %></div>
     <% if @book.user == current_user %>
       <%= link_to '修改', edit_book_path(@book), class: 'btn btn-success' %>
     <% else %>
@@ -69,11 +71,11 @@
       </div>
       <div class="comment-block">
         <form action="">
-          <textarea name="" id="" cols="30" rows="3" placeholder="Say somthing..."></textarea>
+          <textarea name="" id="content_id" cols="30" rows="3" placeholder="Say somthing..."></textarea>
         </form>
       </div>
       <div style="text-align: right">
-                    <button style="margin-top: 12px" class="btn btn-primary" type="button">评论</button>
+                    <button style="margin-top: 12px" class="btn btn-primary" type="button" id="comment_id">评论</button>
 
       </div>
     </div>

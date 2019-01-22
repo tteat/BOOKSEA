@@ -44,6 +44,21 @@ class BooksController < ApplicationController
     end
   end
 
+  def add_comment
+      @comment = Comment.new(params)
+
+      respond_to do |format|
+        if true
+          format.html { redirect_to @comment, notice: 'User was successfully created.' }
+          format.js
+          format.json { render json: @comment, status: :created, location: @comment }
+        else
+          format.html { render action: "new" }
+          format.json { render json: @comment.errors, status: :unprocessable_entity }
+        end
+      end
+  end
+
   # PATCH/PUT /books/1
   # PATCH/PUT /books/1.json
   def update

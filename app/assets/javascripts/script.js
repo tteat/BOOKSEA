@@ -37,4 +37,23 @@ $(document).on('turbolinks:load', function () {
   });
 
   $('.search-reset').on('click', reset);
+
+  $('#comment_id').on('click',function () {
+      $.ajax({ type: "POST",
+          url: "add_comment",
+          data: {
+              bookId:$("#book_id").html(),
+              content:$("#content_id").val(),
+              userId:23,
+              createAt:new Date()
+          },
+          dataType: "json",
+          success: function(){
+
+          }});
+  })
+
+    $('#joinin').on('click',function () {
+          alert('加入成功！')
+    })
 });
