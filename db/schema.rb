@@ -89,12 +89,12 @@ ActiveRecord::Schema.define(version: 20171216114657) do
   create_table "activities", force: :cascade do |t|
     t.string "title"
     t.string "content"
+    t.string "place"
+    t.datetime "starttime",null:false
     t.datetime "created_at", null: false
+    t.datetime "finishtime",null:false
     t.datetime "ended_at", null: false
     t.integer "user_id"
-    t.string "place"
-    t.datetime "starttime"
-    t.datetime "finishtime"
   end
 
   create_table "comments", force: :cascade do |t|
