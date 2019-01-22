@@ -5,6 +5,7 @@ class Book < ApplicationRecord
   has_many :exchanges2, class_name: 'Exchange', foreign_key: 'book_receiver_id'
   has_many :tag_relations, inverse_of: :book
   has_many :tags, through: :tag_relations
+  has_many :comments
 
   # Associates the attribute ":avatar" with a file attachment
   has_attached_file :avatar, styles: {

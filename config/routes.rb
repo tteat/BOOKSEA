@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   root 'pages#index'
 
-  resources :books, except: %i[destroy]
+  resources :books do
+    resources :comments
+  end
   resources :activities, except: %i[destroy]
   post 'books/add_comment' => 'books#add_comment', as: 'add_comment'
 

@@ -24,8 +24,6 @@
   </p>
 
   <p class="mb-1">
-    <div id="current_user"><%= current_user %></div>
-    <div id="book_id"><%= @book.id %></div>
     <% if @book.user == current_user %>
       <%= link_to '修改', edit_book_path(@book), class: 'btn btn-success' %>
     <% else %>
@@ -63,53 +61,38 @@
   </p>
 
   <h5 class="mt-4" style="text-align: center">评论:</h5>
-  <div class="comments" style="margin: 0 auto">
-
+  <%= form_for([@book, @book.comments.build]) do |f| %>
     <div class="comment-wrap">
-      <div class="photo">
-        <div class="avatar" style="background-image: url('https://s3.amazonaws.com/uifaces/faces/twitter/dancounsell/128.jpg')"></div>
-      </div>
-      <div class="comment-block">
-        <form action="">
-          <textarea name="" id="content_id" cols="30" rows="3" placeholder="Say somthing..."></textarea>
-        </form>
-      </div>
-      <div style="text-align: right">
-                    <button style="margin-top: 12px" class="btn btn-primary" type="button" id="comment_id">评论</button>
+    <div class="photo">
+      <div class="avatar" style="background-image: url('https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg')"></div>
+    </div>
+    <div class="comment-block">
 
-      </div>
+      <%= f.text_area :content %>
+
     </div>
 
+    <div style="text-align: right;margin-top: 12px">
+      <%= f.submit "评论", class: "btn btn-primary" %>
+    </div>
+    </div>
+  <% end %>
+
+  <% @book.comments.each do |comment| %>
     <div class="comment-wrap">
       <div class="photo">
         <div class="avatar" style="background-image: url('https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg')"></div>
       </div>
-      <div class="comment-block">
-        <p class="comment-text">非常喜爱《有人在周围走动》这本集子。科塔萨尔除了作家之外，还有一个身份，就是译者。我多希望，自己有一天能译出让译者科塔萨尔满意的作品。</p>
-        <div class="bottom-comment">
-          <div class="comment-date">2018.12.13</div>
-          <ul class="comment-actions">
-            <li class="reply">回复</li>
-          </ul>
+      <div class="comment-block" style="text-align: left">
+        <%= comment.content %>
+        <div style="text-align: right;font-size: small">
+        <%= comment.created_at %>
         </div>
+
       </div>
     </div>
 
-    <div class="comment-wrap">
-      <div class="photo">
-        <div class="avatar" style="background-image: url('https://s3.amazonaws.com/uifaces/faces/twitter/felipenogs/128.jpg')"></div>
-      </div>
-      <div class="comment-block">
-        <p class="comment-text">比心译者！ 每一篇都很科塔萨尔，平淡的开头，揪着心，到最后也没有放松，感觉一部分时光掉落进了字里行间，一部分灵魂被拿去做了糖又被送了回来。 喝一杯“茴香酒”。怅然。 是疯了，又想学西班牙语。</p>
-        <div class="bottom-comment">
-          <div class="comment-date">2018.12.12</div>
-          <ul class="comment-actions">
-            <li class="reply">回复</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
+  <% end %>
 
 </div>
 
