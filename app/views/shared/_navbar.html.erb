@@ -14,8 +14,17 @@
       </ul>
       <ul class="nav navbar-nav ml-auto">
         <% if user_signed_in? %>
-          <%= nav_link "活动", activities_path %>
           <%= nav_link "我的交换", exchanges_path %>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="account" aria-expanded="false">
+              活动<span class="caret"></span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="account">
+              <%= link_to "活动首页", activities_path, class: "dropdown-item" %>
+              <%= link_to "发布活动", new_activity_path, class: "dropdown-item" %>
+            </div>
+          </li>
 
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="account" aria-expanded="false">
