@@ -14,14 +14,14 @@
       <a class="nav-link active" data-toggle="tab" href="#exchanges-actives">
         正在进行
 <!--        <span class="badge badge-pill badge-primary"><%#= @exchanges_active.size %></span>-->
-        <span class="badge badge-pill badge-primary">0</span>
+        <span class="badge badge-pill badge-primary"><%= @activities_active.size %></span>
       </a>
     </li>
     <li class="nav-item">
       <a class="nav-link" data-toggle="tab" href="#exchanges-past">
         历史活动
 <!--        <span class="badge badge-pill badge-secondary"><%#= @exchanges_past.size %></span>-->
-        <span class="badge badge-pill badge-secondary">0</span>
+        <span class="badge badge-pill badge-secondary"><%= @activities_past.size %></span>
       </a>
     </li>
   </ul>
