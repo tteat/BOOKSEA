@@ -78,20 +78,29 @@
     </div>
   <% end %>
 
-  <% @book.comments.each do |comment| %>
+  <%# @book.comments.each do |comment| %>
+  <% if @book.comments.each do |comment| %>
     <div class="comment-wrap">
+
       <div class="photo">
         <div class="avatar" style="background-image: url('https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg')"></div>
       </div>
+
       <div class="comment-block" style="text-align: left">
         <%= comment.content %>
         <div style="text-align: right;font-size: small">
         <%= comment.created_at %>
         </div>
       </div>
-    </div>
 
-  <% end %>
+  </div>
+
+      <% end.empty? %>
+        <div class="container-fluid text-center">
+          <h4 class="mt-3 text-center text-muted">还没有评论哦~</h4>
+        </div>
+
+      <% end %>
 
 </div>
 

@@ -83,7 +83,11 @@
 
                 <div class="card-body">
                   <h4 class="m-0 tag-text" height="20dx">
-                    <%= activity.title %><small class="text-muted">
+<!--                    <div class="photo">-->
+<!--                      <div class="avatar" style="background-image: url('https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg')"></div>-->
+<!--                    </div>-->
+                    <%= activity.title %>
+                    <small class="text-muted">
                   </small>
                   </h4>
                   <p class="m-0 tag-text">内容：<%= truncate(activity.content, length: 30) %></p>
@@ -93,6 +97,7 @@
               </div>
             <% end %>
           </div>
+
         <% end.empty? %>
           <div class="container-fluid text-center">
             <h4 class="mt-3 text-center text-muted">还没有历史活动哦~</h4>
