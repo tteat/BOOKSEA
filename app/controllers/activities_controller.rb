@@ -7,6 +7,8 @@ class ActivitiesController < ApplicationController
   before_action :set_activity, only: %i[show edit update]
   before_action :authenticate_user!
 
+  @recommendation = Book.where(id: rand(1..40)).first
+
   def set_activity
     @activity = Activity.find(params[:id])
   end
