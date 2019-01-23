@@ -24,8 +24,8 @@ fr:
       messages:
         record_invalid: '验证失败: %{errors}'
         restrict_dependent_destroy:
-          has_one: "您无法删除记录，因为存在依赖的％{record}"
-          has_many: "您无法删除记录，因为存在％{record}依赖项"
+          has_one: "您无法删除记录，因为存在依赖的%{record}"
+          has_many: "您无法删除记录，因为存在%{record}依赖项"
   date:
     abbr_day_names:
     - 周日
@@ -83,7 +83,7 @@ fr:
     distance_in_words:
       about_x_hours:
         one: 大约一个小时
-        other: 大约{count}个小时
+        other: 大约%{count}个小时
       about_x_months:
         one: 大约一个月
         other: 大约%{count}个月
@@ -133,18 +133,18 @@ fr:
       accepted: 必须接受
       blank: 必填
       present: 现在是空的
-      confirmation: 与％{attribute}不符
+      confirmation: 与%{attribute}不符
       empty: 必填
-      equal_to: 必须等于％{count}
+      equal_to: 必须等于%{count}
       even: 必须是均匀的
       exclusion: 不可用
-      greater_than: 必须大于％{count}
-      greater_than_or_equal_to: 必须大于或等于％{count}
+      greater_than: 必须大于%{count}
+      greater_than_or_equal_to: 必须大于或等于%{count}
       inclusion: 不包括在列表中
       invalid: 无效
-      less_than: 必须小于％{count}
-      less_than_or_equal_to: 必须小于或等于％{count}
-      model_invalid: "验证失败：％{errors}"
+      less_than: 必须小于%{count}
+      less_than_or_equal_to: 必须小于或等于%{count}
+      model_invalid: "验证失败：%{errors}"
       not_a_number: 必须是数字
       not_an_integer: 必须是整数
       odd: 必须是奇数
@@ -152,25 +152,25 @@ fr:
       taken: 不可用
       too_long:
         one: 太长（不超过一个字符）
-        other: 太长（不超过％{count}个字符）
+        other: 太长（不超过%{count}个字符）
       too_short:
         one: 太短（至少一个字符）
-        other: 太短（至少％{count}个字符）
+        other: 太短（至少%{count}个字符）
       wrong_length:
         one: 不做正确的长度（必须有一个字符）
-        other: 没有正确的长度（必须有％{count}个字符）
-      other_than: 必须与％{count}不同
+        other: 没有正确的长度（必须有%{count}个字符）
+      other_than: 必须与%{count}不同
     template:
       body: '请检查以下字段：'
       header:
-        one: '无法保存此％{model}：1错误'
-        other: '无法保存此％{model}：％{count}错误'
+        one: '无法保存此%{model}：1错误'
+        other: '无法保存此%{model}：%{count}错误'
   helpers:
     select:
       prompt: 请选择
     submit:
-      create: 创建一个％{model}
-      submit: 保存此％{model}
+      create: 创建一个%{model}
+      submit: 保存此%{model}
       update: 编辑此 %{model}
   number:
     currency:
