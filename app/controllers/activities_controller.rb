@@ -19,7 +19,7 @@ class ActivitiesController < ApplicationController
     @activities_active = []
     @activities_past = []
     @activities.each do |activity|
-      (activity.ended_at > 2019-01-13 ? @activities_active : @activities_past) << activity
+      (activity.ended_at > Time.now ? @activities_active : @activities_past) << activity
 
     end
   end
@@ -135,6 +135,8 @@ class ActivitiesController < ApplicationController
         .permit(:title, :created_at,:ended_at, :place, :content)
         .merge(user_id: current_user.id)
   end
+      # .permit(:avatar,:title, :created_at,:ended_at, :place, :content)
+  # 活动图片
 
   def activity_params_rate
     result = params.require(:activity)

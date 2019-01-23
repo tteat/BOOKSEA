@@ -46,6 +46,7 @@
                     </h4>
                     <p class="m-0 tag-text">内容：<%= truncate(activity.content, length: 30) %></p>
                     <p class="m-0 tag-text">地点：<%= truncate(activity.place, length: 30) %></p>
+                    <p class="m-0 tag-text">截止时间：<%= activity.ended_at %></p>
 <!--                    <button class="btn btn-primary" data-toggle="modal">-->
 <!--                      加入-->
 <!--                    </button>-->
@@ -69,17 +70,25 @@
       </div>
     </div>
     <div class="tab-pane fade" id="exchanges-past">
+      <div class="container mt-5">
+        <%= render partial: "shared/flash", flash: flash %>
       <div class="row">
         <% if @activities_past.each do |activity| %>
           <div class="col-md-6 mb-4">
             <%= link_to activity, class: 'link-clean' do %>
               <div class="card">
+
+                <!--  活动图片-->
+                <%#= image_tag activity.avatar.url(:thumb), class: 'img-fluid' %>
+
                 <div class="card-body">
-                  <h4 class="m-0 tag-text">
+                  <h4 class="m-0 tag-text" height="20dx">
                     <%= activity.title %><small class="text-muted">
                   </small>
                   </h4>
-                  <p class="m-0 tag-text"><%= truncate(activity.content, length: 30) %></p>
+                  <p class="m-0 tag-text">内容：<%= truncate(activity.content, length: 30) %></p>
+                  <p class="m-0 tag-text">地点：<%= truncate(activity.place, length: 30) %></p>
+                  <p class="m-0 tag-text">截止时间：<%= activity.ended_at %></p>
                 </div>
               </div>
             <% end %>
