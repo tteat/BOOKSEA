@@ -55,6 +55,27 @@ class ActivitiesController < ApplicationController
     end
   end
 
+  # def join
+  #
+  #   @activity = Activity.new(activity_params_join)
+  #
+  #   respond_to do |format|
+  #     if @activity.save
+  #       format.html { redirect_to @activity, notice: '加入成功！' }
+  #       format.json { render :show, status: :created, location: @activity }
+  #     else
+  #       format.html { render :new }
+  #       format.json { render json: @activity.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
+  #
+  # def activity_params_join
+  #   params.require(:activity)
+  #       .permit(:title, :created_at,:ended_at, :place, :content)
+  #       .merge(user_id: current_user.id)
+  # end
+
   def get_finish
     render :finish
   end
