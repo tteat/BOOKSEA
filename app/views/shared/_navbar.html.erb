@@ -61,7 +61,7 @@
 
             <div class="form-group">
               <div class="input-group">
-                  <input type="text" class="form-control search-form" placeholder="搜索标签或类别......" aria-label="搜索标签或类别.......">
+                  <input type="text" name="book_name" class="form-control search-form" placeholder="请输入书名..." aria-label="搜索标签或类别.......">
                   <span class="input-group-btn">
                     <button class="btn btn-secondary search-reset" type="button">重置</button>
                   </span>
@@ -85,7 +85,7 @@
             <hr>
 
             <div class="form-group">
-              <%= collection_radio_buttons(nil, :category, Category.all, :id, :name, {}, { required: true }) do |b| %>
+              <%= collection_radio_buttons(nil, :category, Category.all, :id, :name, {}) do |b| %>
                 <label class="custom-control custom-radio search-category">
                   <%= b.radio_button(class: 'custom-control-input') %>
                   <span class="custom-control-indicator"></span>
@@ -98,7 +98,7 @@
 
           <div class="form-group">
             <h6>为你推荐</h6>
-            <p>心灵鸡汤，微观经济学，宏观经济学</p>
+            <p><%= @recommendation.first_name %></p>
 
           </div>
 
