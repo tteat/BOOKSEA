@@ -14,8 +14,8 @@ class PagesController < ApplicationController
     # Validate category
     @category = Category.find_by_id(params[:category])
     @book = Book.where(first_name: params[:book_name])
-    # if @category.blank?
-    if true
+    if @category.blank?
+    #if true
       #redirect_to @book
       @results = @book
     elsif tag_ids.blank?
