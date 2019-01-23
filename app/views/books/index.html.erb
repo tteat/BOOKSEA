@@ -16,7 +16,9 @@
       <div class="col-md-3 mb-4">
         <%= link_to book, class: 'link-clean' do %>
           <div class="card">
+
             <%= image_tag book.avatar.url(:thumb), class: 'img-fluid' %>
+
             <div class="card-body">
               <h4 class="m-0 tag-text">
                 <%= book.first_name %><small class="text-muted">,
