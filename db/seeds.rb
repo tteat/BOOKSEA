@@ -30,7 +30,7 @@ descriptions = [
 puts "Creating #{users_count} users..."
 User.create!(email: 'test@test', password: 'test@test',
              password_confirmation: 'test@test', first_name: 'Admin',
-             phone: '0600000000', is_admin: true)
+             phone: '06000000000', is_admin: true)
 
 users = []
 users_count.times do
@@ -39,7 +39,7 @@ users_count.times do
                         password: 'test@test',
                         password_confirmation: 'test@test',
                         first_name: first_name,
-                        phone: "06#{format('%08d', rand(10**8))}")
+                        phone: "06#{format('%09d', rand(10**8))}")
 end
 
 # Categories
